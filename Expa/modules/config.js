@@ -34,8 +34,12 @@ class Config {
         });
     }
 
-    get(key) {
-        return config.get(key)
+    get(key, where) {
+        try {
+            return config.get(key)
+        } catch (err) {
+            return where || null
+        }
     }
 }
 

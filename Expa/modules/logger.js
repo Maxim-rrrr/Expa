@@ -12,7 +12,7 @@ import 'winston-mongodb';
 
 let logger_transports_conf = []
 
-if (config.get("logger_console")) {
+if (config.get("logger_console", true)) {
     logger_transports_conf.push(new transports.Console({
             format: combine(
                 timestamp(),
@@ -23,7 +23,7 @@ if (config.get("logger_console")) {
     )
 }
 
-if (config.get("logger_file")) {
+if (config.get("logger_file", true)) {
     logger_transports_conf.push(new transports.File({
         filename: 'logs/logs.log',
         format: combine(
@@ -34,7 +34,7 @@ if (config.get("logger_file")) {
     )
 }
 
-if (config.get("logger_mongoDB")) {
+if (config.get("logger_mongoDB", false)) {
     logger_transports_conf.push(new transports.MongoDB({
         db: config.get('mongoUrl'),
         options: {

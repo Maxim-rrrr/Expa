@@ -28,6 +28,12 @@ class Cryptor {
         });
     }
 
+    getSecretKey() {
+        const cipherData = fs.readFileSync(`${__dirname}/Expa/key.json`)
+        const { key, algorithm } = JSON.parse(cipherData)
+        return key
+    }
+
     encrypt(string) {
         const cipherData = fs.readFileSync(`${__dirname}/Expa/key.json`)
         const { key, algorithm } = JSON.parse(cipherData)
